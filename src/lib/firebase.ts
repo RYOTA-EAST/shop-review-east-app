@@ -1,6 +1,5 @@
 import * as firebase from 'firebase';
 import "firebase/firestore";
-import Constants from 'expo-constants';
 import { Shop } from '../types/shop';
 import { firebaseConfig } from '../../env';
 

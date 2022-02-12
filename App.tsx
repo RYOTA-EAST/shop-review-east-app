@@ -1,12 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, FlatList, View, SafeAreaView } from 'react-native';
+import { LogBox, StyleSheet, FlatList, SafeAreaView } from 'react-native';
 /* lib */
 import { getShops } from './src/lib/firebase';
 /* components */
 import { ShopReviewItem } from './src/components/ShopReviewItem';
 /* types */
 import { Shop } from './src/types/shop';
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 export default function App() {
   const [shops, setShops] = useState<Shop[]>([]);
