@@ -3,24 +3,20 @@ import { createStackNavigator } from "@react-navigation/stack";
 /* screens */
 import { HomeScreen } from "../screens/HomeScreen";
 import { ShopScreen } from "../screens/ShopScreen";
-/* types */
-import { RootStackParamList } from "../types/navigation";
 
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator();
 
-export const HomeStackNavigator = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerTintColor: "#000"
-      }}
-    >
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen name="Shop" component={ShopScreen} />
-    </Stack.Navigator>
-  );
-};
+export const HomeStackNavigator = () => (
+  <Stack.Navigator
+    screenOptions={{
+      headerTintColor: "#000",
+    }}
+  >
+    <Stack.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen name="Shop" component={ShopScreen} />
+  </Stack.Navigator>
+);

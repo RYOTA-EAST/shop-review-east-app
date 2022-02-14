@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { StyleSheet, SafeAreaView, Text } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 /* components */
 import { ShopDetail } from "../components/ShopDetail";
 /* types */
