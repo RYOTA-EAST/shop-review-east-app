@@ -16,7 +16,7 @@ export const MainTabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="HomeTab"
         component={HomeStackNavigator}
         options={{
           tabBarLabel: "Home",
@@ -26,7 +26,7 @@ export const MainTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="User"
+        name="UserTab"
         component={UserScreen}
         options={{
           tabBarLabel: "User",
