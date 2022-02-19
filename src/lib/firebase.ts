@@ -4,6 +4,7 @@ import "firebase/auth"
 import { Shop } from '../types/shop';
 import { firebaseConfig } from '../../env';
 import { initialUser, User } from '../types/user';
+import { Review } from '../types/Review';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -16,7 +17,9 @@ export const getShops = async () => {
     // .where("place", "==", "品川")
     .orderBy("score", "desc")
     .get();
-  const shops = snapshot.docs.map((doc) => doc.data() as Shop);
+  const shops = snapshot.docs.map(
+    (doc) => ({ ...doc.data(), id: doc.id } as Shop)
+  );
   return shops;
 };
 
@@ -41,4 +44,13 @@ export const signin = async () => {
 export const updateUser = async (userId: string, params: any) => {
   await firebase.firestore().collection("users").doc(userId).update(params);
   console.log(params)
+};
+
+export const addReview = async (shopId: string, review: Review) => {
+  await firebase
+    .firestore()
+    .collection("shops")
+    .doc(shopId)
+    .collection("reviews")
+    .add(review);
 };
