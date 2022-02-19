@@ -40,4 +40,5 @@ export const signin = async () => {
 
 export const updateUser = async (userId: string, params: any) => {
   await firebase.firestore().collection("users").doc(userId).update(params);
+  console.log(params)
 };
