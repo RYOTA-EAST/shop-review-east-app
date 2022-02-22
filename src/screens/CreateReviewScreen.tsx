@@ -4,6 +4,7 @@ import { StyleSheet, SafeAreaView, View, Image, Alert } from "react-native";
 import { IconButton } from "../components/IconButton";
 import { TextArea } from "../components/TextArea";
 import { StarInput } from "../components/StarInput";
+import { ReviewsContext } from "../context/reviewsContext";
 import { Button } from "../components/Button";
 import { Loading } from "../components/Loading";
 import firebase from "firebase";
@@ -35,6 +36,7 @@ export const CreateReviewScreen: React.FC<Props> = ({
   const [imageUri, setImageUri] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const { user } = useContext(UserContext);
+  const {reviews, setReviews} = useContext(ReviewsContext);
 
   useEffect(() => {
     navigation.setOptions({
@@ -64,6 +66,7 @@ export const CreateReviewScreen: React.FC<Props> = ({
     const downloadUrl = await uploadImage(imageUri, storagePath);
     // reviewドキュメントを作る
     const review = {
+      id: reviewDocRef.id,
       user: {
         name: user.name,
         id: user.id,
@@ -79,6 +82,8 @@ export const CreateReviewScreen: React.FC<Props> = ({
       createdAt: firebase.firestore.Timestamp.now(),
     } as Review;
     await reviewDocRef.set(review);
+    setReviews([review, ...reviews]);
+
     setLoading(false);
     navigation.goBack();
   };

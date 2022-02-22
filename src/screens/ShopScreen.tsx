@@ -1,6 +1,7 @@
-import React, { useEffect, useState} from "react";
+import React, { useContext, useEffect, useState} from "react";
 import { StyleSheet, SafeAreaView, FlatList } from "react-native";
 import { getReviews } from "../lib/firebase";
+import { ReviewsContext } from "../context/reviewsContext";
 /* components */
 import { ShopDetail } from "../components/ShopDetail";
 import { FloatingActionButton } from "../components/FlotingActionButton";
@@ -18,7 +19,7 @@ type Props = {
 
 export const ShopScreen: React.FC<Props> = ({ navigation, route }: Props) => {
   const {shop} = route.params;
-  const [reviews, setReviews] = useState<Review[]>([])
+  const { reviews, setReviews } = useContext(ReviewsContext);
 
   useEffect(() => {
     navigation.setOptions({ title: shop.name });
